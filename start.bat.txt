@@ -1,0 +1,44 @@
+@echo off
+chcp 65001
+title ТраксЯкутия Сервер
+
+echo ========================================
+echo   🚛 ЗАПУСК СЕРВЕРА ДЛЯ ТЕЛЕФОНА
+echo ========================================
+
+REM 1. Убиваем старые процессы Python
+taskkill /F /IM python.exe /IM pythonw.exe 2>nul
+
+REM 2. Получаем IP
+for /f "tokens=2 delims=:" %%i in ('ipconfig ^| findstr /C:"IPv4"') do set IP=%%i
+set IP=%IP:~1%
+echo 📱 Ваш IP: %IP%
+
+REM 3. Открываем порт
+netsh advfirewall firewall add rule name="TraksYakutia" dir=in action=allow protocol=TCP localport=8000 2>nul
+
+REM 4. Создаем Python скрипт для сервера
+echo import socket > server_all.py
+echo import sys >> server_all.py
+echo from http.server import HTTPServer, SimpleHTTPRequestHandler >> server_all.py
+echo. >> server_all.py
+echo class Handler(SimpleHTTPRequestHandler): >> server_all.py
+echo     def __init__(self, *args, **kwargs): >> server_all.py
+echo         super().__init__(*args, directory=".", **kwargs) >> server_all.py
+echo. >> server_all.py
+echo if __name__ == "__main__": >> server_all.py
+echo     port = 8000 >> server_all.py
+echo     server_address = ('0.0.0.0', port) >> server_all.py
+echo     httpd = HTTPServer(server_address, Handler) >> server_all.py
+echo     print(f"Server at http://0.0.0.0:{port}") >> server_all.py
+echo     print(f"For phone: http://%IP%:{port}") >> server_all.py
+echo     try: >> server_all.py
+echo         httpd.serve_forever() >> server_all.py
+echo     except KeyboardInterrupt: >> server_all.py
+echo         print("\nServer stopped") >> server_all.py
+
+REM 5. Запускаем сервер
+echo.
+echo ✅ Запускаем сервер...
+echo.
+python server_all.py

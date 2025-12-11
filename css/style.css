@@ -1,0 +1,1103 @@
+/* ===== СУРОВЫЙ ЯКУТСКИЙ РЕСЕТ ===== */
+/* Базовый сброс стилей для всех элементов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Учитываем padding и border в размерах */
+    -webkit-tap-highlight-color: transparent; /* Убираем подсветку при тапе на мобильных */
+}
+
+/* Стили для корневых элементов */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Запрещаем прокрутку страницы */
+    font-family: 'Roboto', -apple-system, sans-serif; /* Шрифтовая система */
+    background: #0a1a2a; /* Темный фон */
+    color: #e0e0e0; /* Светлый цвет текста */
+}
+
+/* ===== СУРОВАЯ ШАПКА ===== */
+/* Фиксированная шапка приложения */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: linear-gradient(90deg, #1a2b3c 0%, #2d3b4a 100%); /* Градиентный фон */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Распределение пространства */
+    padding: 0 20px;
+    z-index: 1000; /* Высокий слой для поверх всех элементов */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Тень для объема */
+    border-bottom: 3px solid #ff6b35; /* Акцентная граница */
+    backdrop-filter: blur(10px); /* Размытие фона */
+}
+
+/* Левая часть шапки */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Расстояние между элементами */
+}
+
+/* Индикатор температуры */
+.temp-indicator {
+    background: rgba(0, 100, 255, 0.3);
+    border: 2px solid #4fc3f7;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #4fc3f7;
+    min-width: 120px; /* Минимальная ширина */
+    text-align: center;
+    transition: all 0.3s; /* Плавные переходы */
+}
+
+/* Стили для экстремальной температуры */
+.temp-indicator.temp-extreme {
+    border-color: #ff0000;
+    color: #ff0000;
+    background: rgba(255, 0, 0, 0.2);
+    animation: pulse-extreme 1s infinite; /* Пульсация */
+}
+
+/* Стили для холодной температуры */
+.temp-indicator.temp-cold {
+    border-color: #4fc3f7;
+    color: #4fc3f7;
+    background: rgba(79, 195, 247, 0.2);
+}
+
+/* Стили для нормальной температуры */
+.temp-indicator.temp-normal {
+    border-color: #4caf50;
+    color: #4caf50;
+    background: rgba(76, 175, 80, 0.2);
+}
+
+/* Кнопка меню */
+.menu-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Плавная анимация */
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+/* Название приложения */
+.app-title {
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение */
+}
+
+.app-name {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px; /* Разрядка букв */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Тень текста */
+}
+
+.app-subtitle {
+    font-size: 12px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* Правая часть шапки */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Кнопки фильтра и геолокации */
+.filter-btn, .locate-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    font-size: 22px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-btn:hover, .locate-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* ===== СУРОВЫЙ БАННЕР ЯКУТИИ ===== */
+/* Информационный баннер */
+.yakutia-banner {
+    position: fixed;
+    top: 70px; /* Под шапкой */
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(90deg, #006400 0%, #008000 50%, #006400 100%); /* Зеленый градиент */
+    color: white;
+    z-index: 999; /* Ниже шапки */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #ff6b35;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Анимация флага */
+.banner-flag {
+    font-size: 18px;
+    animation: pulse-flag 3s infinite; /* Плавная пульсация */
+}
+
+@keyframes pulse-flag {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); } /* Увеличение */
+}
+
+.banner-icon {
+    font-size: 18px;
+}
+
+/* ===== ПЕРЕКЛЮЧАТЕЛЬ КАРТ ===== */
+/* Панель выбора типа карты */
+.map-selector {
+    position: fixed;
+    top: 120px; /* Под баннером */
+    left: 20px;
+    z-index: 1000;
+    background: rgba(26, 35, 47, 0.95); /* Полупрозрачный фон */
+    backdrop-filter: blur(10px); /* Размытие */
+    border-radius: 15px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid #ff6b35;
+}
+
+/* Стилизация выпадающего списка */
+.map-selector select {
+    padding: 10px 15px;
+    padding-right: 40px; /* Место для стрелки */
+    border-radius: 10px;
+    border: 2px solid #4fc3f7;
+    font-weight: bold;
+    color: #4fc3f7;
+    /* Кастомная стрелка через background */
+    background: rgba(255, 255, 255, 0.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234fc3f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 15px center;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 200px;
+    appearance: none; /* Убираем стандартный стиль */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: all 0.3s;
+}
+
+.map-selector select:focus {
+    outline: none;
+    border-color: #ff6b35;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.3); /* Фокусное свечение */
+}
+
+/* Стили для опций */
+.map-selector select option {
+    background: #1a2b3c;
+    color: #e0e0e0;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Выбранная опция */
+.map-selector select option:checked {
+    background: #ff6b35;
+    color: white;
+}
+
+.map-selector select:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== КНОПКА SOS ===== */
+/* Аварийная кнопка */
+.emergency-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 1000;
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); /* Красный градиент */
+    color: white;
+    border: none;
+    border-radius: 50px; /* Овальная форма */
+    padding: 12px 25px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    animation: pulse-emergency 2s infinite; /* Постоянная пульсация */
+    transition: all 0.3s;
+}
+
+/* Анимация пульсации для SOS */
+@keyframes pulse-emergency {
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    }
+    50% { 
+        transform: scale(1.05); /* Увеличение */
+        box-shadow: 0 8px 30px rgba(255, 0, 0, 0.6); /* Усиление тени */
+    }
+}
+
+.emergency-btn:hover {
+    animation: none; /* Останавливаем анимацию при наведении */
+    transform: scale(1.1);
+    box-shadow: 0 10px 35px rgba(255, 0, 0, 0.7);
+}
+
+/* ===== СУРОВАЯ КАРТА ===== */
+/* Основной контейнер карты */
+#map {
+    position: fixed !important;
+    top: 110px !important; /* header + banner */
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 110px) !important; /* Высота минус шапка и баннер */
+    z-index: 1; /* Под всеми элементами управления */
+    background: #1a2b3c; /* Фон загрузки */
+}
+
+/* Стилизация контейнера Leaflet */
+.leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    font-family: inherit !important; /* Наследуем шрифт */
+}
+
+/* Темная тема для Leaflet */
+.leaflet-container.dark {
+    background: #0a1a2a;
+}
+
+/* ===== ПАНЕЛЬ ФИЛЬТРОВ ===== */
+/* Скрывающаяся боковая панель */
+.filters-panel {
+    position: fixed;
+    top: 110px;
+    right: -320px; /* Скрыта за экраном */
+    width: 300px;
+    bottom: 0;
+    background: rgba(26, 35, 47, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 1001; /* Выше карты */
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Плавное выезжание */
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+    border-left: 2px solid #ff6b35;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Активное состояние - показываем панель */
+.filters-panel.active {
+    right: 0;
+}
+
+/* Заголовок панели фильтров */
+.filters-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+    background: rgba(42, 51, 63, 0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filters-header h3 {
+    color: #ff6b35;
+    font-size: 18px;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Кнопка закрытия */
+.close-filters {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #ff6b35;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Круглая кнопка */
+    transition: background 0.3s;
+}
+
+.close-filters:hover {
+    background: rgba(255, 107, 53, 0.2);
+}
+
+/* Контентная область с прокруткой */
+.filters-content {
+    flex: 1; /* Занимает все доступное пространство */
+    overflow-y: auto; /* Вертикальная прокрутка при необходимости */
+    padding: 20px;
+}
+
+/* Секция фильтра */
+.filter-section {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 107, 53, 0.2); /* Разделитель */
+}
+
+.filter-section h4 {
+    color: #4fc3f7;
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(79, 195, 247, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Группа фильтров */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Расстояние между элементами */
+}
+
+/* Элемент фильтра */
+.filter-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.filter-item:hover {
+    background: rgba(255, 107, 53, 0.1);
+    transform: translateX(5px); /* Сдвиг при наведении */
+    border-color: rgba(255, 107, 53, 0.3);
+}
+
+/* Кастомный чекбокс */
+.filter-item input[type="checkbox"] {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    accent-color: #ff6b35; /* Цвет акцента для чекбокса */
+    cursor: pointer;
+}
+
+.filter-icon {
+    font-size: 20px;
+    margin-right: 10px;
+    width: 24px;
+    text-align: center;
+}
+
+.filter-text {
+    font-size: 15px;
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+/* Кнопка применения фильтров */
+.apply-filters {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff5722 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.apply-filters:hover {
+    transform: translateY(-2px); /* Эффект поднятия */
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+}
+
+/* ===== ЛЕГЕНДА ===== */
+/* Панель легенды карты */
+.legend {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: rgba(26, 35, 47, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid #ff6b35;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+/* Кнопка переключения легенды */
+.legend-toggle {
+    padding: 12px 15px;
+    background: linear-gradient(90deg, #ff6b35 0%, #ff5722 100%);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.legend-toggle:hover {
+    background: linear-gradient(90deg, #ff5722 0%, #f4511e 100%);
+}
+
+/* Содержимое легенды (скрыто по умолчанию) */
+.legend-content {
+    padding: 15px;
+    display: none;
+    background: rgba(42, 51, 63, 0.8);
+}
+
+/* Показать легенду */
+.legend-content.show {
+    display: block;
+    animation: slideDown 0.3s ease; /* Анимация появления */
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Элемент легенды */
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #e0e0e0;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.legend-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Цветной индикатор */
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%; /* Круглая форма */
+    margin-right: 10px;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ===== КНОПКА ДОБАВЛЕНИЯ ТОЧКИ ===== */
+/* Кнопка для добавления новой точки */
+.add-point-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: linear-gradient(135deg, #4fc3f7 0%, #2196f3 100%); /* Синий градиент */
+    color: white;
+    border: none;
+    border-radius: 50px; /* Овальная форма */
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(79, 195, 247, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-point-btn:hover {
+    transform: translateY(-3px) scale(1.05); /* Поднятие и увеличение */
+    box-shadow: 0 10px 30px rgba(79, 195, 247, 0.6);
+}
+
+.add-point-icon {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.add-point-text {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ===== СУРОВЫЕ МАРКЕРЫ ===== */
+/* Кастомные маркеры для карты */
+.custom-marker {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%; /* Круглая форма */
+    background: white;
+    border: 3px solid; /* Цвет границы будет задаваться классом */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, -100%); /* Центрирование маркера */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    z-index: 500;
+}
+
+.custom-marker:hover {
+    transform: translate(-50%, -100%) scale(1.2); /* Увеличение при наведении */
+    z-index: 1000 !important; /* Поверх других маркеров */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Треугольник-указатель под маркером */
+.custom-marker::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid inherit; /* Наследует цвет границы */
+}
+
+/* Цвета маркеров с градиентами для разных типов */
+.marker-fuel { 
+    border-color: #FF9800; 
+    color: #FF9800;
+    background: linear-gradient(135deg, white 0%, #fff3e0 100%);
+}
+.marker-parking { 
+    border-color: #4CAF50; 
+    color: #4CAF50;
+    background: linear-gradient(135deg, white 0%, #e8f5e9 100%);
+}
+.marker-hotel { 
+    border-color: #2196F3; 
+    color: #2196F3;
+    background: linear-gradient(135deg, white 0%, #e3f2fd 100%);
+}
+.marker-food { 
+    border-color: #9C27B0; 
+    color: #9C27B0;
+    background: linear-gradient(135deg, white 0%, #f3e5f5 100%);
+}
+.marker-service { 
+    border-color: #F44336; 
+    color: #F44336;
+    background: linear-gradient(135deg, white 0%, #ffebee 100%);
+}
+.marker-tire { 
+    border-color: #795548; 
+    color: #795548;
+    background: linear-gradient(135deg, white 0%, #efebe9 100%);
+}
+.marker-wash { 
+    border-color: #00BCD4; 
+    color: #00BCD4;
+    background: linear-gradient(135deg, white 0%, #e0f7fa 100%);
+}
+.marker-ferry { 
+    border-color: #3F51B5; 
+    color: #3F51B5;
+    background: linear-gradient(135deg, white 0%, #e8eaf6 100%);
+}
+.marker-border { 
+    border-color: #FF5722; 
+    color: #FF5722;
+    background: linear-gradient(135deg, white 0%, #fbe9e7 100%);
+}
+.marker-danger { 
+    border-color: #FF0000; 
+    color: #FF0000;
+    background: linear-gradient(135deg, white 0%, #ffebee 100%);
+    animation: pulse-danger 2s infinite; /* Пульсация для опасных зон */
+}
+
+/* Анимация пульсации для опасных маркеров */
+@keyframes pulse-danger {
+    0%, 100% { transform: translate(-50%, -100%) scale(1); }
+    50% { transform: translate(-50%, -100%) scale(1.1); }
+}
+
+/* Анимация пульсации для экстремальной температуры */
+@keyframes pulse-extreme {
+    0%, 100% { 
+        opacity: 1; 
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+    }
+    50% { 
+        opacity: 0.8; 
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); /* Расширяющееся свечение */
+    }
+}
+
+/* ===== СУРОВЫЕ ПОПАПЫ ===== */
+/* Стилизация всплывающих окон Leaflet */
+.leaflet-popup-content-wrapper {
+    border-radius: 15px !important;
+    padding: 5px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    border: 2px solid #ff6b35 !important;
+    background: #1a2b3c !important;
+    color: #e0e0e0 !important;
+}
+
+.leaflet-popup-content {
+    margin: 0 !important;
+    padding: 20px !important;
+    min-width: 280px !important;
+    font-family: inherit !important;
+}
+
+/* Заголовок попапа */
+.popup-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(255, 107, 53, 0.3);
+}
+
+.popup-icon {
+    font-size: 28px;
+    margin-right: 12px;
+}
+
+.popup-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff6b35;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Детали в попапе */
+.popup-details {
+    margin-bottom: 20px;
+}
+
+.popup-detail {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #b0b0b0;
+    line-height: 1.5;
+}
+
+.popup-detail strong {
+    min-width: 100px; /* Фиксированная ширина для выравнивания */
+    color: #e0e0e0;
+    font-weight: 600;
+}
+
+/* Блоки информации в попапах */
+.weather-info, .truck-info, .fuel-info {
+    padding: 12px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border-left: 4px solid; /* Цветная граница слева */
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.weather-info {
+    border-left-color: #4fc3f7; /* Синий для погоды */
+}
+
+.truck-info {
+    border-left-color: #ff9800; /* Оранжевый для грузовиков */
+}
+
+.fuel-info {
+    border-left-color: #4caf50; /* Зеленый для топлива */
+}
+
+/* Кнопки в попапе */
+.popup-buttons {
+    display: flex;
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px;
+}
+
+.popup-btn {
+    flex: 1; /* Равная ширина */
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Стили для разных типов кнопок */
+.popup-btn.route {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff5722 100%);
+    color: white;
+}
+
+.popup-btn.save {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.popup-btn.warning {
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    color: white;
+}
+
+.popup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== УВЕДОМЛЕНИЯ ===== */
+/* Всплывающие уведомления */
+.map-notification {
+    position: fixed;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%); /* Центрирование по горизонтали */
+    background: rgba(26, 35, 47, 0.95);
+    color: #4fc3f7;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: 2px solid #4fc3f7;
+    z-index: 2000; /* Самый высокий слой */
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    animation: fadeInOut 2s ease; /* Автоматическое исчезновение */
+    pointer-events: none; /* Не блокирует взаимодействие */
+}
+
+/* Анимация появления и исчезновения */
+@keyframes fadeInOut {
+    0% { 
+        opacity: 0; 
+        transform: translateX(-50%) translateY(-10px); /* Начальное положение выше */
+    }
+    15% { 
+        opacity: 1; 
+        transform: translateX(-50%) translateY(0); 
+    }
+    85% { 
+        opacity: 1; 
+        transform: translateX(-50%) translateY(0); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateX(-50%) translateY(-10px); /* Возврат вверх при исчезновении */
+    }
+}
+
+/* ===== АНИМАЦИИ ДЛЯ ТЕМПЕРАТУРЫ ===== */
+/* Дублирование стилей для температурных индикаторов */
+.temp-extreme {
+    border-color: #ff0000 !important;
+    color: #ff0000 !important;
+    animation: pulse-extreme 1s infinite;
+}
+
+.temp-cold {
+    border-color: #4fc3f7 !important;
+    color: #4fc3f7 !important;
+}
+
+.temp-normal {
+    border-color: #4caf50 !important;
+    color: #4caf50 !important;
+}
+
+/* ===== АДАПТИВНОСТЬ ДЛЯ СУРОВЫХ УСЛОВИЙ ===== */
+/* Медиа-запросы для планшетов и мобильных устройств */
+@media (max-width: 768px) {
+    .header {
+        height: 65px;
+        padding: 0 15px;
+    }
+    
+    .temp-indicator {
+        font-size: 16px;
+        padding: 6px 12px;
+        min-width: 100px;
+    }
+    
+    .yakutia-banner {
+        top: 65px;
+        height: 35px;
+    }
+    
+    #map {
+        top: 100px !important;
+        height: calc(100% - 100px) !important;
+    }
+    
+    .map-selector {
+        top: 105px;
+        left: 10px;
+        padding: 10px;
+    }
+    
+    .map-selector select {
+        min-width: 180px;
+        font-size: 13px;
+        padding: 8px 35px 8px 12px;
+        background-position: right 10px center;
+    }
+    
+    .filters-panel {
+        width: 100%;
+        right: -100%;
+        top: 100px;
+    }
+    
+    .legend {
+        bottom: 140px;
+        left: 10px;
+        min-width: 180px;
+    }
+    
+    .emergency-btn {
+        bottom: 140px;
+        right: 10px;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .add-point-btn {
+        bottom: 80px;
+        padding: 12px 20px;
+        right: 10px;
+    }
+    
+    .add-point-text {
+        display: none; /* Скрываем текст на мобильных */
+    }
+    
+    .app-name {
+        font-size: 18px;
+    }
+    
+    .app-subtitle {
+        font-size: 11px;
+    }
+    
+    .menu-btn, .filter-btn, .locate-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+/* Медиа-запросы для маленьких экранов */
+@media (max-width: 480px) {
+    .header {
+        height: 60px;
+        padding: 0 10px;
+    }
+    
+    .yakutia-banner {
+        top: 60px;
+        height: 30px;
+    }
+    
+    .banner-content {
+        font-size: 13px;
+        gap: 8px;
+    }
+    
+    #map {
+        top: 90px !important;
+        height: calc(100% - 90px) !important;
+    }
+    
+    .temp-indicator {
+        font-size: 14px;
+        padding: 4px 8px;
+        min-width: 90px;
+        position: absolute;
+        right: 10px;
+        top: 5px; /* Перемещаем в угол на маленьких экранах */
+    }
+    
+    .app-title {
+        max-width: 150px; /* Ограничиваем ширину */
+    }
+    
+    .app-name {
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* Многоточие при длинном тексте */
+    }
+    
+    .app-subtitle {
+        font-size: 10px;
+    }
+    
+    .map-selector {
+        top: 95px;
+        left: 5px;
+        right: 5px;
+        padding: 8px;
+    }
+    
+    .map-selector select {
+        width: 100%;
+        min-width: auto;
+        font-size: 12px;
+        padding: 6px 30px 6px 10px;
+    }
+    
+    .legend {
+        bottom: 130px;
+    }
+    
+    .emergency-btn {
+        bottom: 130px;
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .add-point-btn {
+        bottom: 70px;
+        padding: 10px;
+        right: 5px;
+    }
+    
+    .emergency-text {
+        font-size: 12px;
+    }
+}
+
+/* ===== ПРОЧИЕ АНИМАЦИИ ===== */
+/* Дополнительные анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Применяем анимации */
+.filters-panel.active,
+.legend-content.show {
+    animation: slideIn 0.3s ease;
+}
+
+.custom-marker {
+    animation: fadeIn 0.5s ease;
+}
+
+/* ===== СКРОЛЛБАР ДЛЯ СУРОВЫХ УСЛОВИЙ ===== */
+/* Кастомизация скроллбара */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 107, 53, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 107, 53, 0.7);
+}
+
+/* ===== ФИКС ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ ===== */
+/* Отключаем hover-эффекты на сенсорных устройствах */
+@media (hover: none) and (pointer: coarse) {
+    .custom-marker:hover {
+        transform: translate(-50%, -100%) scale(1); /* Отключаем увеличение */
+    }
+    
+    .popup-btn:hover {
+        transform: none; /* Отключаем поднятие */
+    }
+    
+    .filter-item:hover {
+        transform: none; /* Отключаем сдвиг */
+    }
+    
+    .map-selector select:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
